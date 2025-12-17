@@ -1,7 +1,7 @@
 # Q-Q Plot.
 
 # Creates a Q-Q plot from the input residuals
-plot_auxqq <- function(resid, theme, axis.text.size, title.text.size, title.opt, qqline, qqbands, alpha){
+plot_auxqq <- function(resid, theme, axis.text.size, title.text.size, title.opt, qqline, qqbands, alpha, coordfix){
 
   ## Creation of Values to Plot -----------------------------------------------------
 
@@ -31,6 +31,12 @@ plot_auxqq <- function(resid, theme, axis.text.size, title.text.size, title.opt,
   # Add a line if requested
   if(qqline == TRUE){
     plot <- plot + stat_qq_line(color = "blue", size = .5)
+  }
+  
+  # Fix the coordinate axes (default for non-interactive)
+  
+  if(coordfix == TRUE){
+    plot <- plot + coord_fixed()
   }
 
   # Add theme to plot
